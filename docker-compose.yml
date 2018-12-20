@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  image:
+    image: tophfr/phpunit:$VERSION
+    build:
+      context: build
+      args:
+        FROM: $FROM
+        XDEBUG_VERSION: $XDEBUG_VERSION
+        PHPUNIT_VERSION: $VERSION
+    network_mode: host
