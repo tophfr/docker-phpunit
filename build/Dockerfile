@@ -31,6 +31,8 @@ ENV PHPUNIT_VERSION $PHPUNIT_VERSION
 RUN composer global require -n phpunit/phpunit:$PHPUNIT_VERSION \
     && composer global clear-cache -n
 
-#RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/zzz.ini
+COPY usr /usr
 
-ENTRYPOINT ["/usr/local/bin/phpunit"]
+RUN ln -s php-xdebug.sh /usr/local/bin/php-xdebug
+
+ENTRYPOINT ["/usr/local/bin/entrypoint-phpunit.sh", "/usr/local/bin/phpunit"]
